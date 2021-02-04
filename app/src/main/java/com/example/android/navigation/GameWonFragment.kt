@@ -20,9 +20,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.android.navigation.databinding.FragmentGameWonBinding
 
 
@@ -36,12 +38,13 @@ class GameWonFragment : Fragment() {
 
         binding.nextMatchButton.setOnClickListener{view:View ->
 
-            Navigation.findNavController(view).navigate(R.id.action_gameWonFragment_to_titleFragment23)
-
+            view.findNavController().navigate(GameWonFragmentDirections.actionGameWonFragmentToTitleFragment23())
 
         }
 
-
+        val args = GameWonFragmentArgs.fromBundle(arguments!!)
+        Toast.makeText(context,"NumberOfCorrect: ${args.numCorrect} , NumOfQuestions: ${args.numQuestions}",Toast.LENGTH_SHORT)
+                .show()
         return binding.root
     }
 }
